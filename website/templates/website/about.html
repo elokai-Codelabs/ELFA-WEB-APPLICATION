@@ -1,0 +1,106 @@
+{% extends 'website/base.html' %} {% load static %}
+<!--  -->
+{% block content%}
+<section id="about-home">
+  <h2>About Us /</h2>
+</section>
+
+<section id="about-container">
+  <div class="about-img">
+    <img src="{% static 'images/about_profile.webp'%}" alt="" />
+  </div>
+
+  <div class="about-text">
+    <h2>
+      Welcome to Elfa Academy, Enhance your skills with best Online Courses
+    </h2>
+    <p style="font-family: Poppins, sans-serif">
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur
+      minima cupiditate harum similique. Nam, aliquam? Neque et delectus fuga
+      repellat doloremque optio perferendis quis? Magni, dignissimos nemo! Et,
+      aliquam odio. Modi sunt, rem consectetur explicabo porro quae mollitia
+      odit dolore inventore pariatur iure, repellat ad quod odio veritatis saepe
+      fuga, totam hic nulla natus corrupti? Rerum quod nobis aliquid
+      consequuntur. Placeat, maxime earum in tenetur unde voluptatum itaque
+      maiores? Sit omnis enim fuga expedita perspiciatis qui, deleniti pariatur
+      accusantium laboriosam rerum quisquam consectetur vitae assumenda,
+      eligendi velit provident quasi? Ut? Tempore in, quia error inventore
+      fugiat doloremque neque corrupti amet ad, vel voluptatem magni sequi eaque
+      perferendis sint excepturi id quis. Magni quidem nihil, iste at veritatis
+      modi autem ab? Reprehenderit, sint et. Perferendis aliquam atque,
+      voluptates a totam optio dolores obcaecati, culpa iste, quisquam maiores
+      aspernatur eius illum est mollitia ipsum repellat libero aut eos
+      reiciendis illo tempora natus.
+    </p>
+  </div>
+</section>
+
+<section id="features">
+  <h1>Why people choose Us</h1>
+  <p>Where preparation meets opportunity, success is inevitable</p>
+  <div class="fea-base">
+    <div class="fea-box">
+      <i class="fas fa-graduation-cap"></i>
+      <h3>Vision</h3>
+      <p>{{info.vision|slice:400}}</p>
+    </div>
+
+    <div class="fea-box">
+      <i class="fas fa-file-certificate"></i>
+      <h3>Mission</h3>
+      <p>{{info.mission|slice:400}}</p>
+    </div>
+
+    <div class="fea-box">
+      <i class="fas fa-award"></i>
+      <h3>Motto</h3>
+      <p>{{info.motto|slice:400}}</p>
+    </div>
+  </div>
+</section>
+
+<section style="max-width: 100%; margin: 6rem auto; text-align: center">
+  <h1 style="max-width: 90%; margin-bottom: 1rem; text-align: center">
+    The ELFA Advantage
+  </h1>
+  <p style="max-width: 90%; margin-bottom: 2rem; text-align: center">
+    Replenish man have thing gathering lights yielding shall you
+  </p>
+  <div class="trust-images">
+    <iframe
+      style="padding: 1rem 0"
+      width="90%"
+      height="550px"
+      src="https://www.youtube.com/embed/WvFMyEhbEm0"
+      title="YouTube video player"
+      frameborder="0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      allowfullscreen
+    ></iframe>
+  </div>
+</section>
+
+<section id="experts">
+  <h1>Meet Our Team</h1>
+  <p>Replenish man have thing gathering lights yielding shall you</p>
+  <div class="expert-box">
+    {% for team in teams %}
+    <div class="profile">
+      <img
+        src="{{team.featured_image.url}}"
+        alt=""
+        width="120px"
+        style="border: 10px solid white; border-radius: 50%"
+      />
+      <h6>{{team.name}}</h6>
+      <p>{{team.portfolio}}</p>
+      <div class="pro-link">
+        <a href="{{team.facebook_link}}"> <i class="fab fa-facebook-f"></i></a>
+        <a href="{{team.instagram_link}}"> <i class="fab fa-instagram"></i></a>
+        <a href="{{team.linkedIn_link}}"> <i class="fab fa-linkedin-in"></i></a>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</section>
+{% endblock content%}

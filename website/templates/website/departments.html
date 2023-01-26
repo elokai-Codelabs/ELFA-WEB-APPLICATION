@@ -1,0 +1,28 @@
+{% extends 'website/base.html' %} {% load static %}
+<!--  -->
+{% block content%}
+<section id="about-home">
+  <h2>Departments /</h2>
+</section>
+
+<section id="course">
+  <h1>Our Departments</h1>
+  <p>Replenish man have thing gathering lights yielding shall you</p>
+  <div class="course-box">
+    {% for department in departments %}
+    <a href="" style="text-decoration: none; color: inherit"
+      ><div class="courses">
+        <img src="{{department.featured_image.url}}" alt="" />
+        <div class="details">
+          <p>Head - {{department.HOD}}</p>
+          <br />
+          <h6>{{department.name_of_department}}</h6>
+          <p>{{department.description|slice:400}}</p>
+        </div>
+      </div></a
+    >
+    {% endfor %}
+  </div>
+</section>
+
+{% endblock content%}

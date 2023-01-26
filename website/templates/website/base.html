@@ -1,0 +1,167 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Elfa Academy</title>
+    <link
+      rel="shortcut icon"
+      type="image/png"
+      href="{% static 'images/elfa.png' %}"
+    />
+    <link
+      rel="stylesheet"
+      href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+    />
+
+    <link rel="stylesheet" href="{% static 'style.css' %}" />
+    <script
+      src="https://code.jquery.com/jquery-3.6.0.min.js"
+      integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+      crossorigin="anonymous"
+    ></script>
+  </head>
+
+  <body>
+    <nav>
+      <a href="{% url 'home' %}">
+        <img
+          onclick="window.location.href='index.html'"
+          src="{% static 'images/elfa.png'%}"
+          alt=""
+      /></a>
+      <div class="navigation">
+        <ul>
+          <i id="menu-close" class="fas fa-times"></i>
+          <li><a href="{% url 'home'%}" class="active">Home</a></li>
+          <li><a href="{% url 'about'%}">About</a></li>
+          <li><a href="{% url 'departments'%}">Department</a></li>
+          <li><a href="{% url 'calendar'%}">Calendar</a></li>
+          <li><a href="{% url 'blog'%}">Blog</a></li>
+          <li><a href="{% url 'contact'%}">Contact</a></li>
+          <li>
+            <a
+              href=".html"
+              style="
+                background-color: darkgoldenrod;
+                padding: 8px 25px;
+                border-radius: 10px;
+                color: #fff;
+              "
+              >Login</a
+            >
+          </li>
+        </ul>
+        <img id="menu-btn" src="{% static 'images/menu.png' %}" alt="" />
+      </div>
+    </nav>
+    {% block content %}
+    <!--  -->
+    {% endblock %}
+
+    <footer>
+      <div class="footer-col">
+        <h3>Elfa Documentary</h3>
+        <iframe
+          width="332"
+          height="200"
+          src="https://www.youtube.com/embed/8RcdwMmmGtE"
+          title="YouTube video player"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen
+        ></iframe>
+      </div>
+      <div class="footer-col">
+        <h3>Featured Links</h3>
+        <li>
+          <a
+            href="{% url 'about'%}"
+            style="text-decoration: none; color: #7b838a"
+          >
+            >&nbsp; About Us</a
+          >
+        </li>
+        <li>
+          <a
+            href="{% url 'departments'%}"
+            style="text-decoration: none; color: #7b838a"
+          >
+            >&nbsp; Departments</a
+          >
+        </li>
+        <li>
+          <a
+            href="{% url 'calendar'%}"
+            style="text-decoration: none; color: #7b838a"
+          >
+            >&nbsp; Calendar</a
+          >
+        </li>
+        <li>
+          <a
+            href="{% url 'blog'%}"
+            style="text-decoration: none; color: #7b838a"
+            >>&nbsp; Blog</a
+          >
+        </li>
+        <li>
+          <a
+            href="{% url 'contact'%}"
+            style="text-decoration: none; color: #7b838a"
+          >
+            >&nbsp; Contact</a
+          >
+        </li>
+      </div>
+      <div class="footer-col">
+        <h3>Information</h3>
+        <li>No. 734 Ahia Street, Gomoa Fetteh</li>
+        <li>Central Region</li>
+        <li><i class="fas fa-phone-alt get"></i>&nbsp;(+233) 245 791 371</li>
+        <li><i class="fas fa-phone-alt get"></i>&nbsp;(+233) 245 881 987</li>
+        <li>elfaacademy@gmail.com</li>
+      </div>
+
+      <div class="footer-col">
+        <h3>Newsletter</h3>
+        <p>You can trust us. we only offer the best course materials</p>
+        <div class="subscribe">
+          <input type="text" name="" placeholder="Your Email Address" id="" />
+          <a class="yellow" href="#">SUBSCRIBE</a>
+        </div>
+      </div>
+      <div class="copyright">
+        <p>Copyright ©2022 All rights reserved | Elfa Academy</p>
+        <div class="pro-link">
+          <a
+            href="https://m.facebook.com/people/Evangelist-Ernest-Okai-Larbi/100017020574807/"
+          >
+            <i class="fab fa-facebook-f"></i
+          ></a>
+          <!-- whatsapp -->
+          <a
+            href="https://www.youtube.com/results?search_query=okai+larbi+ernest"
+          >
+            <i class="fab fa-youtube"></i
+          ></a>
+          <!-- linkedin -->
+          <a href="https://gh.linkedin.com/in/ernest-larbi-okai-a28b4621b">
+            <i class="fab fa-linkedin-in"></i
+          ></a>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      $("#menu-btn").click(function () {
+        $("nav .navigation ul").addClass("active");
+      });
+      $("#menu-close").click(function () {
+        $("nav .navigation ul").removeClass("active");
+      });
+    </script>
+  </body>
+</html>

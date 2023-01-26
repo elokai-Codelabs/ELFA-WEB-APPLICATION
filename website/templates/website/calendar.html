@@ -1,0 +1,41 @@
+{% extends 'website/base.html' %} {% load static %}
+<!--  -->
+{% block content%}
+
+<section id="about-home">
+  <h2>Calendar of Events /</h2>
+</section>
+<section id="blog-container">
+  <div class="blogs postpage">
+    <div class="post">
+      <a href="{%static 'calendar.pdf' %}" download="">
+        <button
+          style="
+            background-color: rgb(12, 84, 139);
+            color: white;
+            border: 2px solid rgb(12, 84, 139);
+            border-radius: 10px;
+            padding: 20px 35px;
+          "
+        >
+          <i class="fa fa-download"></i> &nbsp; Download the pdf version of the
+          event calendar
+        </button>
+      </a>
+      <br />
+      <ol>
+        {% for event in events %}
+        <li style="margin-top: 2rem">
+          {{event.event_name}} -- {{event.event_date}}
+        </li>
+        {% endfor %}
+      </ol>
+    </div>
+  </div>
+</section>
+{% endblock content%}
+
+<!-- <h1>CALENDAR OF EVENTS</h1>
+  <p>Replenish man have thing gathering lights yielding shall you</p>
+ 
+  -->
