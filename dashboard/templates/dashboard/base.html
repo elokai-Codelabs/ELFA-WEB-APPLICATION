@@ -57,7 +57,7 @@
     <!-- ======= Header ======= -->
     <header id="header" class="header fixed-top d-flex align-items-center">
       <div class="d-flex align-items-center justify-content-between">
-        <a href="" class="logo d-flex align-items-center">
+        <a href="{% url 'dashboard' %}" class="logo d-flex align-items-center">
           <img src="{% static 'images/logo.jpg' %}" alt="" />
           <span class="d-none d-lg-block">ELFA ACADEMY</span>
         </a>
@@ -156,14 +156,14 @@
     <aside id="sidebar" class="sidebar">
       <ul class="sidebar-nav" id="sidebar-nav">
         <li class="nav-item">
-          <a class="nav-link" href="">
+          <a class="nav-link" href="{% url 'dashboard' %}">
             <i class="bi bi-grid"></i>
             <span>Dashboard</span>
           </a>
         </li>
 
         <li class="nav-item">
-          <a class="nav-link collapsed" href="users-profile.html">
+          <a class="nav-link collapsed" href="{% url 'info' %}">
             <i class="bi bi-grid"></i>
             <span>School Information</span>
           </a>
@@ -331,19 +331,19 @@
     <!-- End #main -->
 
     <!-- ======= Footer ======= -->
-    <footer id="footer" class="footer">
+    <!-- <footer id="footer" class="footer">
       <div class="copyright">
         &copy; Copyright <strong><span>ELFA ACADEMY</span></strong
         >. All Rights Reserved
       </div>
-    </footer>
+    </footer> -->
     <!-- End Footer -->
 
-    <a
+    <!-- <a
       href="#"
       class="back-to-top d-flex align-items-center justify-content-center"
       ><i class="bi bi-arrow-up-short"></i
-    ></a>
+    ></a> -->
 
     <!-- Vendor JS Files -->
     <script src="{% static 'assets/vendor/apexcharts/apexcharts.min.js' %}"></script>

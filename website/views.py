@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Department,School_Information, Team_Member,Event,Blog
+from .models import Department,School_Information, Team_Member,Event,Blog, Staff
 
 # Create your views here.
 def home(request):
@@ -20,7 +20,7 @@ def about(request):
 def departments(request):
     
     departments = Department.objects.all()
-
+  
     context = {'departments':departments}
     return render(request, 'website/departments.html',context)
 

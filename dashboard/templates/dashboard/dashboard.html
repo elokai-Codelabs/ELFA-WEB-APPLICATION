@@ -119,9 +119,9 @@
             <div class="card-body">
               <h5 class="card-title">TEAM MEMBERS</h5>
 
-              <table class="table table-borderless datatable">
+              <table class="table table-hover">
                 <thead>
-                  <tr>
+                  <tr >
                     <th scope="col">Image</th>
                     <th scope="col">Name</th>
                     <th scope="col">Portfolio</th>
@@ -129,12 +129,24 @@
                   </tr>
                 </thead>
                 <tbody>
+                  {% for team in team_member %}
+
                   <tr>
-                    <th scope="row">image</th>
-                    <td>Brandon Jacob</td>
-                    <td>port</td>
-                    <td>05404</td>
+                    <td>
+                      <img
+                        src="{% if team.featured_image %}{{team.featured_image.url}}{% endif %}"
+                        alt=""
+                        height="30"
+                        width="35"
+                        style="border-radius: 50%"
+                      />
+                    </td>
+                    <td>{{team.name}}</td>
+                    <td>{{team.portfolio}}</td>
+                    <td>{{team.contact}}</td>
                   </tr>
+
+                  {% endfor %}
                 </tbody>
               </table>
             </div>
@@ -147,7 +159,7 @@
             <div class="card-body">
               <h5 class="card-title">DEPARTMENTS</h5>
 
-              <table class="table table-borderless datatable">
+              <table class="table table-hover">
                 <thead>
                   <tr>
                     <th scope="col">Image</th>
@@ -156,11 +168,23 @@
                   </tr>
                 </thead>
                 <tbody>
+                  {% for department in departments %}
+
                   <tr>
-                    <th scope="row">image</th>
-                    <td>Brandon Jacob</td>
-                    <td>port</td>
+                    <td>
+                      <img
+                        src="{% if department.department_featured_image %}{{department.department_featured_image.url}}{% endif %}"
+                        alt=""
+                        height="30"
+                        width="35"
+                        style="border-radius: 50%"
+                      />
+                    </td>
+                    <td>{{department.name_of_department}}</td>
+                    <td>{{department.HOD}}</td>
                   </tr>
+
+                  {% endfor %}
                 </tbody>
               </table>
             </div>
@@ -179,17 +203,15 @@
           <h5 class="card-title">Events</h5>
 
           <div class="activity">
+            {% for event in events %}
             <div class="activity-item d-flex">
-              <div class="activite-label">32 min</div>
+              <div class="activite-label">{{event.event_date}} &nbsp;</div>
               <i
                 class="bi bi-circle-fill activity-badge text-success align-self-start"
               ></i>
-              <div class="activity-content">
-                Quia quae rerum
-                <a href="#" class="fw-bold text-dark">explicabo officiis</a>
-                beatae
-              </div>
+              <div class="activity-content">&nbsp;{{event.event_name}}</div>
             </div>
+            {% endfor %}
             <!-- End activity item-->
           </div>
         </div>
@@ -200,17 +222,23 @@
       <div class="card">
         <div class="card-body pb-0">
           <h5 class="card-title">News &amp; Updates</h5>
-
+          {% for blog in blogs %}
           <div class="news">
             <div class="post-item clearfix">
-              <img src="assets/img/news-1.jpg" alt="" />
-              <h4><a href="#">Nihil blanditiis at in nihil autem</a></h4>
+              <img
+              src="{% if blog.featured_image %}{{blog.featured_image.url}}{% endif %}"
+              alt=""
+              height="50"
+              width="50"
+              style="border-radius: 50%"
+            />
+              <h4>{{blog.title}}</a></h4>
               <p>
-                Sit recusandae non aspernatur laboriosam. Quia enim eligendi sed
-                ut harum...
+                {{blog.message|slice:200}}
               </p>
             </div>
           </div>
+          {% endfor %}
           <!-- End sidebar recent posts-->
         </div>
       </div>
