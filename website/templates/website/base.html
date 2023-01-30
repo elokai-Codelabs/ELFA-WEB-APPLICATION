@@ -22,6 +22,24 @@
       integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
       crossorigin="anonymous"
     ></script>
+    <style>
+      table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+      }
+
+      td,
+      th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+      }
+
+      tr:nth-child(even) {
+        background-color: #dddddd;
+      }
+    </style>
   </head>
 
   <body>
@@ -39,11 +57,11 @@
           <li><a href="{% url 'about'%}">About</a></li>
           <li><a href="{% url 'departments'%}">Department</a></li>
           <li><a href="{% url 'calendar'%}">Calendar</a></li>
-          <li><a href="{% url 'blog'%}">Blog</a></li>
+          <li><a href="{% url 'blogs'%}">Blog</a></li>
           <li><a href="{% url 'contact'%}">Contact</a></li>
           <li>
             <a
-              href=".html"
+              href=""
               style="
                 background-color: darkgoldenrod;
                 padding: 8px 25px;
@@ -102,7 +120,7 @@
         </li>
         <li>
           <a
-            href="{% url 'blog'%}"
+            href="{% url 'blogs'%}"
             style="text-decoration: none; color: #7b838a"
             >>&nbsp; Blog</a
           >

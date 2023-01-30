@@ -8,78 +8,35 @@
 
 <section id="blog-container">
   <div class="blogs">
+    {%for blog in blogs %}
     <div class="post">
-      <img src="{% static 'images/b1.jpg'%}" alt="" />
-      <h3>Learn Web Development In The Easiest Way</h3>
-      <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem
-        eligendi laudantium iure dicta eaque, veritatis rem similique, sapiente
-        magni dolorem doloribus quibusdam molestiae alias officiis cum. Tenetur
-        omnis quos harum.
-      </p>
-      <a class="blue" href="post.html">Read More</a>
+      <img src="{{blog.featured_image.url}}" alt="" height="700px" />
+      <h3>{{blog.title}}</h3>
+      <p>{{blog.message|slice:400}}</p>
+      <a class="blue" href="{% url 'blog' blog.id%}">Read More</a>
     </div>
-    <div class="post">
-      <img src="{% static 'images/b2.jpg'%}" alt="" />
-      <h3>Learn Web Development In The Easiest Way</h3>
-      <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem
-        eligendi laudantium iure dicta eaque, veritatis rem similique, sapiente
-        magni dolorem doloribus quibusdam molestiae alias officiis cum. Tenetur
-        omnis quos harum.
-      </p>
-      <a class="blue" href="#">Read More</a>
-    </div>
-    <div class="post">
-      <img src="{% static 'images/b3.jpg'%}" alt="" />
-      <h3>Learn Web Development In The Easiest Way</h3>
-      <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem
-        eligendi laudantium iure dicta eaque, veritatis rem similique, sapiente
-        magni dolorem doloribus quibusdam molestiae alias officiis cum. Tenetur
-        omnis quos harum.
-      </p>
-      <a class="blue" href="#">Read More</a>
-    </div>
-    <div class="post">
-      <img src="{% static 'images/b4.png'%}" alt="" />
-      <h3>Learn Web Development In The Easiest Way</h3>
-      <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem
-        eligendi laudantium iure dicta eaque, veritatis rem similique, sapiente
-        magni dolorem doloribus quibusdam molestiae alias officiis cum. Tenetur
-        omnis quos harum.
-      </p>
-      <a class="blue" href="#">Read More</a>
-    </div>
+    {% endfor %}
   </div>
 
   <div class="cate">
     <h2>Categories</h2>
     <hr />
     <a href="#">
-      <p>Web Development</p>
+      <p>Announcement</p>
     </a>
     <hr />
     <a href="#">
-      <p>Web Design</p>
+      <p>Examination</p>
     </a>
     <hr />
     <a href="#">
-      <p>App Development</p>
+      <p>Assignment</p>
     </a>
     <hr />
     <a href="#">
-      <p>Frontend Web</p>
+      <p>PTA Meeting</p>
     </a>
     <hr />
-    <a href="#">
-      <p>Python Programming</p>
-    </a>
-    <hr />
-    <a href="#">
-      <p>Javascript Hacks</p>
-    </a>
   </div>
 </section>
 

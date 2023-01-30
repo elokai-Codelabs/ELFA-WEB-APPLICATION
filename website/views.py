@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Department,School_Information, Team_Member,Event
+from .models import Department,School_Information, Team_Member,Event,Blog
 
 # Create your views here.
 def home(request):
@@ -24,11 +24,11 @@ def departments(request):
     context = {'departments':departments}
     return render(request, 'website/departments.html',context)
 
-def department(request):
+def department(request,pk):
     
-    departments = Department.objects.all()
+    department = Department.objects.get(id=pk)
 
-    context = {'departments':departments}
+    context = {'department':department}
     return render(request, 'website/department-inner.html',context)
 
 def calendar(request):
@@ -36,12 +36,19 @@ def calendar(request):
     context = {'events':events}
     return render(request, 'website/calendar.html',context)
 
-def blog(request):
-    
-    context = {}
+def blogs(request):
+    blogs = Blog.objects.all()
+    context = {'blogs':blogs}
     return render(request, 'website/blog.html',context)
 
+def blog(request,pk):
+    blog = Blog.objects.get(id=pk)
+    context = {'blog':blog}
+    return render(request, 'website/post.html',context)
+
 def contact(request):
-    
-    context = {}
+    info = School_Information.objects.first()
+
+    context = {'info':info}
     return render(request, 'website/contact.html',context)
+

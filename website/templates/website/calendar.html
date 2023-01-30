@@ -16,26 +16,27 @@
             border: 2px solid rgb(12, 84, 139);
             border-radius: 10px;
             padding: 20px 35px;
+            margin-bottom: 3rem;
           "
         >
           <i class="fa fa-download"></i> &nbsp; Download the pdf version of the
           event calendar
         </button>
       </a>
-      <br />
-      <ol>
+
+      <table>
+        <tr>
+          <th>Event Name</th>
+          <th>Date</th>
+        </tr>
         {% for event in events %}
-        <li style="margin-top: 2rem">
-          {{event.event_name}} -- {{event.event_date}}
-        </li>
+        <tr>
+          <td>{{event.event_name}}</td>
+          <td>{{event.event_date}}</td>
+        </tr>
         {% endfor %}
-      </ol>
+      </table>
     </div>
   </div>
 </section>
-{% endblock content%}
-
-<!-- <h1>CALENDAR OF EVENTS</h1>
-  <p>Replenish man have thing gathering lights yielding shall you</p>
- 
-  -->
+{% endblock content %}

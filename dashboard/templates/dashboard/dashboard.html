@@ -1,0 +1,225 @@
+{% extends 'dashboard/base.html' %} {% load static %}
+<!--  -->
+{% block content %}
+<!-- all content that extends main.html will sit in here-->
+<section class="section dashboard">
+  <div class="row">
+    <!-- Left side columns -->
+    <div class="col-lg-8">
+      <div class="row">
+        <!-- Departments Card -->
+        <div class="col-xxl-4 col-md-6">
+          <div class="card info-card sales-card">
+            <div class="card-body">
+              <h5 class="card-title">Departments</h5>
+
+              <div class="d-flex align-items-center">
+                <div
+                  class="card-icon rounded-circle d-flex align-items-center justify-content-center"
+                >
+                  <i class="bi bi-people-fill"></i>
+                </div>
+                <div class="ps-3">
+                  <h6>{{department_count}}</h6>
+                  <span class="text-success small pt-1 fw-bold">Available</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- End Departments Card -->
+        <!-- Departments Card -->
+        <div class="col-xxl-4 col-md-6">
+          <div class="card info-card sales-card">
+            <div class="card-body">
+              <h5 class="card-title">Team Members</h5>
+
+              <div class="d-flex align-items-center">
+                <div
+                  class="card-icon rounded-circle d-flex align-items-center justify-content-center"
+                >
+                  <i class="bi bi-people-fill"></i>
+                </div>
+                <div class="ps-3">
+                  <h6>{{team_member_count}}</h6>
+                  <span class="text-success small pt-1 fw-bold">Available</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- End Departments Card -->
+        <!-- Departments Card -->
+        <div class="col-xxl-4 col-md-6">
+          <div class="card info-card sales-card">
+            <div class="card-body">
+              <h5 class="card-title">Staff</h5>
+
+              <div class="d-flex align-items-center">
+                <div
+                  class="card-icon rounded-circle d-flex align-items-center justify-content-center"
+                >
+                  <i class="bi bi-people-fill"></i>
+                </div>
+                <div class="ps-3">
+                  <h6>{{staff_count}}</h6>
+                  <span class="text-success small pt-1 fw-bold">Available</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- End Departments Card -->
+        <!-- Departments Card -->
+        <div class="col-xxl-4 col-md-6">
+          <div class="card info-card sales-card">
+            <div class="card-body">
+              <h5 class="card-title">New Post</h5>
+
+              <div class="d-flex align-items-center">
+                <div
+                  class="card-icon rounded-circle d-flex align-items-center justify-content-center"
+                >
+                  <i class="bi bi-people-fill"></i>
+                </div>
+                <div class="ps-3">
+                  <h6>{{post_count}}</h6>
+                  <span class="text-success small pt-1 fw-bold">Available</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- End Departments Card -->
+        <!-- Departments Card -->
+        <div class="col-xxl-4 col-md-6">
+          <div class="card info-card sales-card">
+            <div class="card-body">
+              <h5 class="card-title">Events</h5>
+
+              <div class="d-flex align-items-center">
+                <div
+                  class="card-icon rounded-circle d-flex align-items-center justify-content-center"
+                >
+                  <i class="bi bi-people-fill"></i>
+                </div>
+                <div class="ps-3">
+                  <h6>{{event_count}}</h6>
+                  <span class="text-success small pt-1 fw-bold">Available</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- End Departments Card -->
+
+        <!-- Recent Sales -->
+        <div class="col-12">
+          <div class="card recent-sales overflow-auto">
+            <div class="card-body">
+              <h5 class="card-title">TEAM MEMBERS</h5>
+
+              <table class="table table-borderless datatable">
+                <thead>
+                  <tr>
+                    <th scope="col">Image</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Portfolio</th>
+                    <th scope="col">Contact</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">image</th>
+                    <td>Brandon Jacob</td>
+                    <td>port</td>
+                    <td>05404</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <!-- End Recent Sales -->
+        <!-- Recent Sales -->
+        <div class="col-12">
+          <div class="card recent-sales overflow-auto">
+            <div class="card-body">
+              <h5 class="card-title">DEPARTMENTS</h5>
+
+              <table class="table table-borderless datatable">
+                <thead>
+                  <tr>
+                    <th scope="col">Image</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Head</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">image</th>
+                    <td>Brandon Jacob</td>
+                    <td>port</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <!-- End Recent Sales -->
+      </div>
+    </div>
+    <!-- End Left side columns -->
+
+    <!-- Right side columns -->
+    <div class="col-lg-4">
+      <!-- Recent Activity -->
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Events</h5>
+
+          <div class="activity">
+            <div class="activity-item d-flex">
+              <div class="activite-label">32 min</div>
+              <i
+                class="bi bi-circle-fill activity-badge text-success align-self-start"
+              ></i>
+              <div class="activity-content">
+                Quia quae rerum
+                <a href="#" class="fw-bold text-dark">explicabo officiis</a>
+                beatae
+              </div>
+            </div>
+            <!-- End activity item-->
+          </div>
+        </div>
+      </div>
+      <!-- End Recent Activity -->
+
+      <!-- News & Updates Traffic -->
+      <div class="card">
+        <div class="card-body pb-0">
+          <h5 class="card-title">News &amp; Updates</h5>
+
+          <div class="news">
+            <div class="post-item clearfix">
+              <img src="assets/img/news-1.jpg" alt="" />
+              <h4><a href="#">Nihil blanditiis at in nihil autem</a></h4>
+              <p>
+                Sit recusandae non aspernatur laboriosam. Quia enim eligendi sed
+                ut harum...
+              </p>
+            </div>
+          </div>
+          <!-- End sidebar recent posts-->
+        </div>
+      </div>
+      <!-- End News & Updates -->
+    </div>
+    <!-- End Right side columns -->
+  </div>
+</section>
+{% endblock %}
+
+<!--  -->
+<!--  -->

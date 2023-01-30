@@ -4,8 +4,9 @@ urlpatterns = [
     path('',views.home, name='home' ),
     path('about/',views.about, name='about' ),
     path('departments/',views.departments, name='departments' ),
-    path('department/',views.department, name='department' ),
+    path('departments/<int:pk>/',views.department, name='department' ),
     path('calendar/',views.calendar, name='calendar' ),
-    path('blog/',views.blog, name='blog' ),
+    path('blogs/',views.blogs, name='blogs' ),
+    path('blogs/<int:pk>/',views.blog, name='blog' ),
     path('contact/',views.contact, name='contact' ),
 ]
