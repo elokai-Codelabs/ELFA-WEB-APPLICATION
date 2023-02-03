@@ -1,0 +1,14 @@
+{% extends 'website/base.html' %} {% load static %}
+<!--  -->
+{% block content%}
+<section id="blog-container">
+  <div class="blogs postpage">
+    <div class="post">
+      <img src="{{blog.featured_image.url}}" alt="" />
+      <h3>{{blog.title}}</h3>
+      <p>{{blog.message}}</p>
+      <!-- <a class="blue" href="#">Read Next ?</a> -->
+    </div>
+  </div>
+</section>
+{% endblock %}

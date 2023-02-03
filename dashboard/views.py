@@ -1,5 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from website.models import Department, Team_Member, Staff, Blog, Event,School_Information
+from .forms import DepartmentForm
 
 # DASHBOARD
 def dashboard(request):
@@ -37,6 +38,18 @@ def show_departments(request):
 
 
 def add_department(request):
+    form = DepartmentForm()
 
-    return render(request, 'dashboard/add_department.html')
+    if request.method == 'POST':
+        form = DepartmentForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('department')
+    context = {'forms': form}
+    return render(request, 'dashboard/add_department.html', context)
+
+
+    
+
+
 
