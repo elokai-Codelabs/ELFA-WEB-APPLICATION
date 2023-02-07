@@ -28,6 +28,9 @@ def school_info(request):
     context = {'info':info}
     return render(request, 'dashboard/school_information.html',context)
 
+
+# ================DEPARTMENT BEGINS =========
+# ================DEPARTMENT BEGINS =========
 def show_departments(request):
     departments = Department.objects.all()
     montessori_tutors = Staff.objects.filter(department='Montessori').count()
@@ -57,11 +60,38 @@ def add_department(request):
     context = {'forms': form}
     return render(request, 'dashboard/add_department.html', context)
 
-def show_team_member(request):
-    team = Team_Member.objects.all()
+# @login_required(login_url='login')
+def edit_department(request,pk):
+    department = Department.objects.get(pk=pk)
+    form = DepartmentForm(instance=department)
     
-    context = {'team':team}
-    return render(request, 'dashboard/show_team_member.html', context)
+
+    if request.method == 'POST':
+        form = DepartmentForm(request.POST, request.FILES,instance=department)
+        if form.is_valid():
+            form.save()
+            return redirect('index')
+    context = {'forms': form}
+    return render(request, 'dashboard/add_department.html', context)
+
+
+# @login_required(login_url='login')
+def delete_department(request,pk):
+    department = Department.objects.get(pk=pk)
+
+    if request.method == 'POST':
+        department.delete()
+        return redirect('departments')
+    return redirect('departments')
+
+# ================DEPARTMENT ENDS =========
+# ================DEPARTMENT ENDS =========
+
+def show_team_members(request):
+    teams = Team_Member.objects.all()
+    
+    context = {'teams':teams}
+    return render(request, 'dashboard/show_team_members.html', context)
 
 def add_team_member(request):
     form = TeamForm()
@@ -79,7 +109,6 @@ def add_team_member(request):
     else:
         form = TeamForm()
     context = {'forms': form}
-    context = {}
     return render(request, 'dashboard/add_team_member.html', context)
 
 def show_staff(request):
@@ -108,7 +137,9 @@ def add_staff(request):
 
 
 def show_blogs(request):
-    context = {}
+    blogs = Blog.objects.all()
+
+    context = {'blogs':blogs}
     return render(request, 'dashboard/show_blogs.html', context)
 
 def add_blog(request):
@@ -118,28 +149,41 @@ def add_blog(request):
         form = BlogForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
-            return redirect('staff')
-            
+            return redirect('blogs')           
         else:
             messages.error(request, form.errors)
-            
-
     else:
         form = BlogForm()
     context = {'forms': form}
-    context = {}
     return render(request, 'dashboard/add_blog.html', context)
 
 
 def show_events(request):
-    context = {}
+    events = Event.objects.all()
+    context = {'events': events}
     return render(request, 'dashboard/show_events.html', context)
 
 def add_events(request):
-    context = {}
+    form = EventForm()
+
+    if request.method == 'POST':
+        form = EventForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('events')
+            
+        else:
+            messages.error(request, form.errors)
+
+    else:
+        form = EventForm()
+    context = {'forms': form}
     return render(request, 'dashboard/add_event.html', context)
 
+
+
     
+
 
 
 

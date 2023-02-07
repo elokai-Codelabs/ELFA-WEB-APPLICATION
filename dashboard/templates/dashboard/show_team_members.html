@@ -7,48 +7,41 @@
     <div class="col-lg-12">
       <div class="card">
         <div class="card-body">
-          <h5 class="card-title">Departments</h5>
-          <p>List of Departments in the school</p>
+          <h5 class="card-title">Team Members</h5>
+          <p>Managements of ELFA Academy</p>
           <div class="binary_content">
-            <a href="{% url 'add-department'%}" class="btn btn-primary">
+            <a href="{% url 'add-team'%}" class="btn btn-primary">
               <i class="bi bi-align-center" style="font-size: 1.4rem"></i>Add
-              New Departments
+              New Member
             </a>
           </div>
           <!-- Table with stripped rows -->
-          <table class="table datatable">
+          <table class="table table-hover">
             <thead>
               <tr>
                 <th scope="col">Image</th>
                 <th scope="col">Name</th>
-                <th scope="col">Head</th>
-                <th scope="col">Tutors</th>
-                <th>Action</th>
+                <th scope="col">Portfolio</th>
+                <th scope="col">Contact</th>
+                <th scope="col">Actions</th>
               </tr>
             </thead>
             <tbody>
-              {% for department in departments %}
+              {% for team in teams %}
+
               <tr>
                 <td>
                   <img
-                    src="{% if department.department_featured_image %}{{department.department_featured_image.url}}{% endif %}"
+                    src="{% if team.featured_image %}{{team.featured_image.url}}{% endif %}"
                     alt=""
                     height="30"
                     width="35"
                     style="border-radius: 50%"
                   />
                 </td>
-                <td>{{department.name_of_department}}</td>
-                <td>{{department.HOD}}</td>
-                {% if department.name_of_department == 'Montessori'%}
-                <td>{{montessori_tutors}}</td>
-                {% elif department.name_of_department == 'Lower Primary' %}
-                <td>{{lower_primary_tutors}}</td>
-                {% elif department.name_of_department == 'Upper Primary' %}
-                <td>{{upper_primary_tutors}}</td>
-                {% elif department.name_of_department == 'JHS' %}
-                <td>{{jhs_tutors}}</td>
-                {% endif %}
+                <td>{{team.name}}</td>
+                <td>{{team.portfolio}}</td>
+                <td>{{team.contact}}</td>
                 <td>
                   <div class="filter">
                     <a class="icon" href="#" data-bs-toggle="dropdown"
@@ -60,7 +53,7 @@
                       <li>
                         <a class="dropdown-item" href="#"
                           ><a
-                            href="{% url 'edit-department' department.id %}"
+                            href=""
                             class="btn btn-outline-info btn-sm tex text-info mx-2"
                             ><i class="bi bi-pencil"></i> Edit</a
                           ></a
@@ -72,7 +65,7 @@
                             type="submit"
                             class="btn btn-danger btn-sm"
                             data-bs-toggle="modal"
-                            data-bs-target="#delete{{department.id}}"
+                            data-bs-target="#delete{{fellowship.id}}"
                           >
                             <i class="bi bi-trash"></i> delete
                           </button>
@@ -82,7 +75,7 @@
                           <!-- Delete modal -->
                           <div
                             class="modal"
-                            id="delete{{department.id}}"
+                            id="delete{{fellowship.id}}"
                             aria-labelledby="myModalLabel2"
                             aria-hidden="true"
                           >
@@ -90,7 +83,7 @@
                               <div class="modal-content">
                                 <div class="modal-header">
                                   <h5 class="modal-title">
-                                    You are about to delete a department
+                                    You are about to delete a fellowship
                                   </h5>
                                   <button
                                     type="button"
@@ -104,7 +97,7 @@
                                 <div class="modal-body">
                                   <p>
                                     Are you sure you want to delete
-                                    {{department.name_of_department}}
+                                    fellowship.name
                                   </p>
                                 </div>
                                 <div class="modal-footer">
@@ -136,9 +129,8 @@
                     </ul>
                   </div>
                 </td>
-
-                <!-- CRUD -->
               </tr>
+
               {% endfor %}
             </tbody>
           </table>

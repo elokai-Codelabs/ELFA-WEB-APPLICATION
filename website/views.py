@@ -1,4 +1,6 @@
 from django.shortcuts import render
+from django.contrib.auth import login, authenticate, logout
+from django.contrib.auth.decorators import login_required
 from .models import Department,School_Information, Team_Member,Event,Blog, Staff
 
 # Create your views here.
