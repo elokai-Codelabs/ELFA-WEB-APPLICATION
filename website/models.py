@@ -22,7 +22,7 @@ class Department(models.Model):
         ('Upper Primary','Upper Primary'),
         ('JHS', 'JHS')
     )
-    name_of_department = models.CharField(max_length=255, blank=True, null=True, choices=DEPARTMENT_CHOICES)
+    name_of_department = models.CharField(max_length=255,unique=True, blank=True, null=True, choices=DEPARTMENT_CHOICES)
     HOD = models.CharField(max_length=255, blank=True, null=True)
     HOD_featured_image = models.ImageField(max_length=255, blank=True, null=True, default='logo.jpg')
     department_featured_image = models.ImageField(max_length=255, blank=True, null=True,default='logo.jpg')
@@ -40,7 +40,7 @@ class Team_Member(models.Model):
          ('Accountant','Accountant'),
     )
     portfolio = models.CharField(max_length=255, blank=True, null=True, choices=PORTFOLIO)
-    name = models.CharField(max_length=255, blank=True, null=True)
+    name = models.CharField(max_length=255,unique=True, blank=True, null=True)
     featured_image = models.ImageField(max_length=500, blank=True, null=True)
     contact = models.IntegerField( blank=True, null=True)
     facebook_link = models.URLField(max_length=500, blank=True, null=True)
@@ -50,7 +50,7 @@ class Team_Member(models.Model):
             return self.portfolio
 
 class Event(models.Model):
-    event_name = models.CharField(max_length=255, blank=True, null=True)
+    event_name = models.CharField(max_length=255,unique=True, blank=True, null=True)
     event_date = models.DateField(blank=True, null=True, )
     created = models.DateTimeField(auto_now_add=True, null=True, blank=True)
     def __str__(self):
@@ -68,7 +68,7 @@ class Staff(models.Model):
         ('JHS', 'JHS'),
         ('Non-Teaching','Non-Teaching')
     )
-    name = models.CharField(max_length=255, blank=True)
+    name = models.CharField(max_length=255,unique=True, blank=True)
     status = models.CharField(max_length=255, blank=True, choices=STATUS_CHOICES)
     department = models.CharField(max_length=255, blank=True, choices=DEPARTMENT_CHOICES)
     contact = models.CharField(max_length=255, blank=True, null=True)
@@ -81,7 +81,7 @@ class Staff(models.Model):
 
 
 class Blog(models.Model):
-    title = models.CharField(max_length=255, blank=True, null=True)
+    title = models.CharField(max_length=255,unique=True, blank=True, null=True)
     message = models.TextField(blank=True,null=True)
     featured_image = models.ImageField(blank=True, null=True)
     created = models.DateTimeField(auto_now_add=True, null=True, blank=True)

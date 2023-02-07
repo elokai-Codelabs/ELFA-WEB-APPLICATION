@@ -1,6 +1,8 @@
 from django.shortcuts import render,redirect
 from website.models import Department, Team_Member, Staff, Blog, Event,School_Information
-from .forms import DepartmentForm
+from .forms import DepartmentForm,TeamForm, StaffForm, BlogForm, EventForm
+from django.contrib import messages
+
 
 # DASHBOARD
 def dashboard(request):
@@ -44,10 +46,98 @@ def add_department(request):
         form = DepartmentForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
-            return redirect('department')
+            return redirect('departments')
+            
+        else:
+            messages.error(request, form.errors)
+            
+
+    else:
+        form = DepartmentForm()
     context = {'forms': form}
     return render(request, 'dashboard/add_department.html', context)
 
+def show_team_member(request):
+    team = Team_Member.objects.all()
+    
+    context = {'team':team}
+    return render(request, 'dashboard/show_team_member.html', context)
+
+def add_team_member(request):
+    form = TeamForm()
+
+    if request.method == 'POST':
+        form = TeamForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('teams')
+            
+        else:
+            messages.error(request, form.errors)
+            
+
+    else:
+        form = TeamForm()
+    context = {'forms': form}
+    context = {}
+    return render(request, 'dashboard/add_team_member.html', context)
+
+def show_staff(request):
+    staff = Staff.objects.all()
+
+    context = {'staff':staff}
+    return render(request, 'dashboard/show_staff.html', context)
+
+def add_staff(request):
+    form = StaffForm()
+
+    if request.method == 'POST':
+        form = StaffForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('staff')
+            
+        else:
+            messages.error(request, form.errors)
+            
+
+    else:
+        form = StaffForm()
+    context = {'forms': form}
+    return render(request, 'dashboard/add_staff.html', context)
+
+
+def show_blogs(request):
+    context = {}
+    return render(request, 'dashboard/show_blogs.html', context)
+
+def add_blog(request):
+    form = BlogForm()
+
+    if request.method == 'POST':
+        form = BlogForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('staff')
+            
+        else:
+            messages.error(request, form.errors)
+            
+
+    else:
+        form = BlogForm()
+    context = {'forms': form}
+    context = {}
+    return render(request, 'dashboard/add_blog.html', context)
+
+
+def show_events(request):
+    context = {}
+    return render(request, 'dashboard/show_events.html', context)
+
+def add_events(request):
+    context = {}
+    return render(request, 'dashboard/add_event.html', context)
 
     
 
