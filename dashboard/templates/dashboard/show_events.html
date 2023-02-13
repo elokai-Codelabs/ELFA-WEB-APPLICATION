@@ -29,94 +29,77 @@
               <tr>
                 <td>{{event.event_name}}</td>
                 <td>{{event.event_date}}</td>
+                <td>
+                  <!-- EDIT BUTTON -->
+                  <a
+                    href="{% url 'edit-event' event.id %}"
+                    class="btn btn-outline-info btn-sm tex text-info mx-2"
+                    ><i class="bi bi-pencil"></i>
+                  </a>
 
-                <th>
-                  <div class="filter">
-                    <a class="icon" href="#" data-bs-toggle="dropdown"
-                      ><i class="bi bi-three-dots"></i
-                    ></a>
-                    <ul
-                      class="dropdown-menu dropdown-menu-end dropdown-menu-arrow text-center"
-                    >
-                      <li>
-                        <a class="dropdown-item" href="#"
-                          ><a
-                            href=""
-                            class="btn btn-outline-info btn-sm tex text-info mx-2"
-                            ><i class="bi bi-pencil"></i> Edit</a
-                          ></a
-                        >
-                      </li>
-                      <li>
-                        <a class="dropdown-item" href="#">
+                  <!-- DELETE BUTTON -->
+                  <button
+                    type="submit"
+                    class="btn btn-danger btn-sm"
+                    data-bs-toggle="modal"
+                    data-bs-target="#delete{{event.id}}"
+                  >
+                    <i class="bi bi-trash"></i>
+                  </button>
+                  <!-- ========================================= -->
+                  <!-- ===========DELETE MODAL FORM MODAL-->
+                  <!-- ======================================== -->
+                  <!-- Delete modal -->
+                  <div
+                    class="modal"
+                    id="delete{{event.id}}"
+                    aria-labelledby="myModalLabel2"
+                    aria-hidden="true"
+                  >
+                    <div class="modal-dialog" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title">
+                            You are about to delete an event
+                          </h5>
                           <button
-                            type="submit"
-                            class="btn btn-danger btn-sm"
-                            data-bs-toggle="modal"
-                            data-bs-target="#delete{{fellowship.id}}"
+                            type="button"
+                            class="btn-close"
+                            data-bs-dismiss="modal"
+                            aria-label="Close"
                           >
-                            <i class="bi bi-trash"></i> delete
+                            <span aria-hidden="true"></span>
                           </button>
-                          <!-- ========================================= -->
-                          <!-- ===========DELETE MODAL FORM MODAL-->
-                          <!-- ======================================== -->
-                          <!-- Delete modal -->
-                          <div
-                            class="modal"
-                            id="delete{{fellowship.id}}"
-                            aria-labelledby="myModalLabel2"
-                            aria-hidden="true"
+                        </div>
+                        <div class="modal-body">
+                          <p>
+                            Are you sure you want to delete {{event.event_name}}
+                          </p>
+                        </div>
+                        <div class="modal-footer">
+                          <button
+                            type="button"
+                            class="btn btn-secondary"
+                            data-bs-dismiss="modal"
                           >
-                            <div class="modal-dialog" role="document">
-                              <div class="modal-content">
-                                <div class="modal-header">
-                                  <h5 class="modal-title">
-                                    You are about to delete a fellowship
-                                  </h5>
-                                  <button
-                                    type="button"
-                                    class="btn-close"
-                                    data-bs-dismiss="modal"
-                                    aria-label="Close"
-                                  >
-                                    <span aria-hidden="true"></span>
-                                  </button>
-                                </div>
-                                <div class="modal-body">
-                                  <p>
-                                    Are you sure you want to delete
-                                    fellowship.name
-                                  </p>
-                                </div>
-                                <div class="modal-footer">
-                                  <button
-                                    type="button"
-                                    class="btn btn-secondary"
-                                    data-bs-dismiss="modal"
-                                  >
-                                    Cancel
-                                  </button>
-                                  <form action="" method="POST">
-                                    {% csrf_token %}
-                                    <input
-                                      type="submit"
-                                      class="btn btn-danger"
-                                      value="Delete"
-                                    />
-                                  </form>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-
-                          <!-- ========================================= -->
-                          <!-- ===========DELETE MODAL FORM END-->
-                          <!-- ======================================== --></a
-                        >
-                      </li>
-                    </ul>
+                            Cancel
+                          </button>
+                          <form
+                            action="{% url 'delete-event' event.id %}"
+                            method="POST"
+                          >
+                            {% csrf_token %}
+                            <input
+                              type="submit"
+                              class="btn btn-danger"
+                              value="Delete"
+                            />
+                          </form>
+                        </div>
+                      </div>
+                    </div>
                   </div>
-                </th>
+                </td>
 
                 <!-- CRUD -->
               </tr>

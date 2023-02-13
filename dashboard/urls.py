@@ -11,16 +11,24 @@ urlpatterns = [
 
     path('teams/',views.show_team_members, name='teams' ),
     path('add-team/',views.add_team_member, name='add-team' ),
+    path('edit-team/<int:pk>/',views.edit_team, name='edit-team' ),
+    path('delete-team/<int:pk>/',views.delete_team, name='delete-team' ),
 
     path('staff/',views.show_staff, name='staff' ),
     path('add-staff/',views.add_staff, name='add-staff'),
+    path('edit-staff/<int:pk>/',views.edit_staff, name='edit-staff' ),
+    path('delete-team/<int:pk>/',views.delete_staff, name='delete-staff' ),
 
      path('blogs/',views.show_blogs, name='blogs' ),
     path('add-blog/',views.add_blog, name='add-blog'),
+     path('edit-blog/<int:pk>/',views.edit_blog, name='edit-blog' ),
+    path('delete-blog/<int:pk>/',views.delete_blog, name='delete-blog' ),
 
      path('events/',views.show_events, name='events' ),
     path('add-event/',views.add_blog, name='add-event'),
+     path('edit-event/<int:pk>/',views.edit_event, name='edit-event' ),
+    path('delete-event/<int:pk>/',views.delete_event, name='delete-event' ),
 
- 
+
  
 ]

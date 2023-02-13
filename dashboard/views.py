@@ -71,7 +71,7 @@ def edit_department(request,pk):
         if form.is_valid():
             form.save()
             return redirect('index')
-    context = {'forms': form}
+    context = {'forms': form, 'department':department}
     return render(request, 'dashboard/add_department.html', context)
 
 
@@ -111,11 +111,42 @@ def add_team_member(request):
     context = {'forms': form}
     return render(request, 'dashboard/add_team_member.html', context)
 
+
+# @login_required(login_url='login')
+def edit_team(request,pk):
+    team = Team_Member.objects.get(pk=pk)
+    form = TeamForm(instance=team)
+    
+
+    if request.method == 'POST':
+        form = TeamForm(request.POST, request.FILES,instance=team)
+        if form.is_valid():
+            form.save()
+            return redirect('teams')
+    context = {'forms': form}
+    return render(request, 'dashboard/add_team_member.html', context)
+
+
+# @login_required(login_url='login')
+def delete_team(request,pk):
+    team = Team_Member.objects.get(pk=pk)
+
+    if request.method == 'POST':
+        team.delete()
+        return redirect('teams')
+    return redirect('teams')
+
+# ================DEPARTMENT ENDS =========
+# ================DEPARTMENT ENDS =========
+
+
+
 def show_staff(request):
     staff = Staff.objects.all()
 
     context = {'staff':staff}
     return render(request, 'dashboard/show_staff.html', context)
+
 
 def add_staff(request):
     form = StaffForm()
@@ -135,6 +166,33 @@ def add_staff(request):
     context = {'forms': form}
     return render(request, 'dashboard/add_staff.html', context)
 
+
+# @login_required(login_url='login')
+def edit_staff(request,pk):
+    staff = Staff.objects.get(pk=pk)
+    form = StaffForm(instance=staff)
+    
+
+    if request.method == 'POST':
+        form = StaffForm(request.POST, request.FILES,instance=staff)
+        if form.is_valid():
+            form.save()
+            return redirect('staff')
+    context = {'forms': form}
+    return render(request, 'dashboard/add_staff.html', context)
+
+
+# @login_required(login_url='login')
+def delete_staff(request,pk):
+    staff = Staff.objects.get(pk=pk)
+
+    if request.method == 'POST':
+        staff.delete()
+        return redirect('staff')
+    return redirect('staff')
+
+# ================DEPARTMENT ENDS =========
+# ================DEPARTMENT ENDS =========
 
 def show_blogs(request):
     blogs = Blog.objects.all()
@@ -158,6 +216,33 @@ def add_blog(request):
     return render(request, 'dashboard/add_blog.html', context)
 
 
+
+# @login_required(login_url='login')
+def edit_blog(request,pk):
+    blog = Blog.objects.get(pk=pk)
+    form = BlogForm(instance=blog)
+    
+
+    if request.method == 'POST':
+        form = BlogForm(request.POST, request.FILES,instance=blog)
+        if form.is_valid():
+            form.save()
+            return redirect('blogs')
+    context = {'forms': form}
+    return render(request, 'dashboard/add_blog.html', context)
+
+
+# @login_required(login_url='login')
+def delete_blog(request,pk):
+    staff = Staff.objects.get(pk=pk)
+
+    if request.method == 'POST':
+        staff.delete()
+        return redirect('blogs')
+    return redirect('blogs')
+
+# ================DEPARTMENT ENDS =========
+# ================DEPARTMENT ENDS =========
 def show_events(request):
     events = Event.objects.all()
     context = {'events': events}
@@ -181,7 +266,37 @@ def add_events(request):
     return render(request, 'dashboard/add_event.html', context)
 
 
+# @login_required(login_url='login')
+def edit_event(request,pk):
+    event = Event.objects.get(pk=pk)
+    form = EventForm(instance=event)
+    
 
+    if request.method == 'POST':
+        form = EventForm(request.POST, request.FILES,instance=event)
+        if form.is_valid():
+            form.save()
+            return redirect('events')
+    context = {'forms': form}
+    return render(request, 'dashboard/add_event.html', context)
+
+
+# @login_required(login_url='login')
+def delete_event(request,pk):
+    staff = Event.objects.get(pk=pk)
+
+    if request.method == 'POST':
+        staff.delete()
+        return redirect('events')
+    return redirect('events')
+
+# ================DEPARTMENT ENDS =========
+# ================DEPARTMENT ENDS =========
+
+# def show_sms(request):
+#     sms = Event.objects.all()
+#     context = {'events': events}
+#     return render(request, 'dashboard/show_events.html', context)
     
 
 

@@ -1,0 +1,86 @@
+
+def send_sms(request):
+    import requests
+    message = "HI there"
+    message = message.replace(" ", "+")
+    API_KEY = "OjRHbjdNV0doSXRUOFRTb0s="
+    to_number = "0547716175"
+    url = f"https://sms.arkesel.com/sms/api?action=send-sms&api_key={API_KEY}&to={to_number}&from=ELFA&sms={message}"
+    print(url)
+    res = requests.get(url)
+
+    print(res.status_code)
+    print(res.content)
+
+send_sms(None)
+
+
+SMS 
+from django.db import models
+
+class SMS(models.Model):
+    phone_number = models.CharField(max_length=20)
+    response_code = models.CharField(max_length=20)
+    message = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+
+
+
+
+from django.shortcuts import render
+from .models import SMS
+
+def send_sms(request):
+    if request.method == 'POST':
+        phone_number = request.POST.get('phone_number')
+        message = request.POST.get('message')
+        # send the SMS and get the response code
+        response_code = send_sms(phone_number, message)
+        # save the SMS details to the database
+        sms = SMS(phone_number=phone_number, message=message, response_code=response_code)
+        sms.save()
+        return render(request, 'sms_sent.html')
+    else:
+        return render(request, 'send_sms.html')
+
+
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>All SMS Messages</h1>
+  <ul>
+    {% for sms in all_sms %}
+      <li>{{ sms.phone_number }} - {{ sms.created_at }} - {{ sms.message }}</li>
+    {% empty %}
+      <li>No SMS messages found.</li>
+    {% endfor %}
+  </ul>
+{% endblock %}
+
+
+def all_sms(request):
+    all_sms = SMS.objects.all()
+    return render(request, 'all_sms.html', {'all_sms': all_sms})
+
+
+
+arkesel
+import arkesel
+
+# Set up Arkesel client
+client = arkesel.Client('your-api-key')
+
+def send_sms(recipients, message):
+    # Send SMS to multiple recipients
+    for recipient in recipients:
+        response = client.sms.send(
+            message=message,
+            sender='YourSenderName',
+            recipients=[recipient]
+        )
+        print(response)
+
+# Usage example
+recipients = ['+2348000000001', '+2348000000002']
+message = 'Hello from Django!'
+send_sms(recipients, message)
