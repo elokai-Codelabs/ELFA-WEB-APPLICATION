@@ -23,7 +23,6 @@ def loginUser(request):
 
 
         user = authenticate(request, username=username, password=password)
-        username = user.username
 
         if user is not None:
             login(request, user)
