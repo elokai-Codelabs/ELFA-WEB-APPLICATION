@@ -1,0 +1,117 @@
+1. Sign up for online courses 
+- fill name, email and contact
+- Send message to the mail used
+-the mail must contain several links to several videos or courses as online courses
+
+2. Newsletter Sign Up
+- Enter Email 
+- Send message to the mail used
+-the mail must contain several links to several videos or courses as online courses
+
+
+
+3. Forget Password and Reset Password
+
+
+
+
+
+
+
+
+
+
+def add_events(request):
+    form = EventForm()
+
+    if request.method == 'POST':
+        form = EventForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('events')
+            
+        else:
+            messages.error(request, form.errors)
+
+    else:
+        form = EventForm()
+    context = {'forms': form}
+    return render(request, 'dashboard/add_event.html', context)
+
+
+# @login_required(login_url='login')
+def edit_event(request,pk):
+    event = Event.objects.get(pk=pk)
+    form = EventForm(instance=event)
+    
+
+    if request.method == 'POST':
+        form = EventForm(request.POST, request.FILES,instance=event)
+        if form.is_valid():
+            form.save()
+            return redirect('events')
+    context = {'forms': form}
+    return render(request, 'dashboard/add_event.html', context)
+
+
+# @login_required(login_url='login')
+def delete_event(request,pk):
+    staff = Event.objects.get(pk=pk)
+
+    if request.method == 'POST':
+        staff.delete()
+        return redirect('events')
+    return redirect('events')
+
+# ================DEPARTMENT ENDS =========
+# ================DEPARTMENT ENDS =========
+def show_sms(request):
+    
+    context = {}
+    return render(request, 'dashboard/show_sms.html',context)
+
+
+
+def send_sms(request):
+    if request.method == 'POST':
+        staff = Staff.objects.all()
+        
+        sender_id = request.POST.get('sender_id')
+        title = request.POST.get('title')
+        body = request.POST.get('body')
+        message_count = len(staff)
+        message = ", ".join([title, body]) 
+        print(message)
+
+        counta = 0
+        # print(len(parents))
+        for worker in staff:
+            to_number =str(worker.contact)
+            # print(parent.phone)
+            
+            API_KEY = "OjRHbjdNV0doSXRUOFRTb0s="
+            if to_number and len(to_number)==10 and to_number.startswith("0"):
+
+                url = f"https://sms.arkesel.com/sms/api?action=send-sms&api_key={API_KEY}&to={to_number}&from={sender_id}&sms={message}"
+                print(url)
+                try:
+                    res = requests.get(url)
+                except Exception as e:
+                    print(e)
+                else:
+                    counta += 1
+                print(worker.contact)
+                print(res.status_code)
+                print(res.content)
+        
+            else:
+                print("invalid phone number")
+        SMS.objects.create(
+                sender_id=sender_id,
+                title=title,
+                body=body,
+                message_count=counta,
+               )
+        return redirect('sms')
+    context = {}
+    return render(request, 'dashboard/send_sms.html',context)

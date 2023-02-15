@@ -1,0 +1,61 @@
+{% extends 'dashboard/base.html' %} {% load static %}
+<!--  -->
+{% block content %}
+<section class="section">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">SMS</h5>
+          <p>List of SMS Sent to Parents</p>
+          <div class="binary_content">
+            <a href="{% url 'send_sms' %}" class="btn btn-primary">
+              <i class="bi bi-send"></i> &nbsp; Send SMS to Staff
+            </a>
+          </div>
+          <!-- Table with stripped rows -->
+          <table class="table datatable">
+            <thead>
+              <tr>
+                <th scope="col">Sender ID</th>
+                <th scope="col">Title</th>
+                <th>Total Messages</th>
+                <th>Date</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for message in sms%}
+              <tr>
+                <td scope="col">{{message.sender_id}}</td>
+                <td scope="col">{{message.title}}</td>
+                <td>{{message.messages_sent}}</td>
+                <td>{{message.date}}</td>
+                {% endfor%}
+              </tr>
+            </tbody>
+          </table>
+          <!-- End Table with stripped rows -->
+
+          <!-- <h1>TEMP FORM</h1>
+          <form action="{% url 'send_sms' %}" method="post">
+            {% csrf_token %}
+            <button type="submit">Send sms</button>
+          </form> -->
+
+          <!-- delete button -->
+          <!-- ===========delete MODAL FORM BUTTON-->
+          <!-- ======================================== -->
+
+          <!-- 
+            ============================
+            ============================================
+            
+            USE 3 DOTS FOR CRUD OPERATIONS HIDE THEM FOR RESPONSIVENES====================================
+           -->
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

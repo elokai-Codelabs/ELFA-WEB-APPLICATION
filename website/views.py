@@ -54,3 +54,5 @@ def contact(request):
     context = {'info':info}
     return render(request, 'website/contact.html',context)
 
+    
+

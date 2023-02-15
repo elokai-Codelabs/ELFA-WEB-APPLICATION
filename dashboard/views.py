@@ -1,7 +1,43 @@
 from django.shortcuts import render,redirect
 from website.models import Department, Team_Member, Staff, Blog, Event,School_Information
+from dashboard.models import SMS
 from .forms import DepartmentForm,TeamForm, StaffForm, BlogForm, EventForm
+# User authentication start 
+from django.contrib.auth import login, authenticate, logout
+from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+import requests
+
+
+
+
+# 
+# ============USER AUTHENTICATION , LOGIN AND LOGOUT==========
+# ============================================================
+def loginUser(request):
+   
+    if request.method == 'POST':
+        username = request.POST['username']
+        password = request.POST['password']
+
+
+        user = authenticate(request, username=username, password=password)
+        username = user.username
+
+        if user is not None:
+            login(request, user)
+            messages.success(request,'User succesfully logged in')
+            return redirect('dashboard')
+        else:
+            messages.error(request,'Invalid username or password')
+    context ={}
+    return render(request,'dashboard/login.html', context)   
+
+
+def logoutUser(request):
+    logout(request)
+    return redirect('login')
 
 
 # DASHBOARD
@@ -16,9 +52,11 @@ def dashboard(request):
     staff_count = Staff.objects.count()
     post_count = Blog.objects.count()
     event_count = Event.objects.count()
+
+    
     
 
-    context = {'department_count':department_count,'team_member_count':team_member_count,'staff_count':staff_count,'post_count':post_count, 'event_count':event_count, 'departments':departments, 'team_member':team_member, 'staff':staff,'events':events,'blogs':blogs}
+    context = {'department_count':department_count,'team_member_count':team_member_count,'staff_count':staff_count,'post_count':post_count, 'event_count':event_count, 'departments':departments, 'team_member':team_member, 'staff':staff,'events':events,'blogs':blogs, }
     return render(request, 'dashboard/dashboard.html',context)
 
 
@@ -292,12 +330,56 @@ def delete_event(request,pk):
 
 # ================DEPARTMENT ENDS =========
 # ================DEPARTMENT ENDS =========
+def show_sms(request):
 
-# def show_sms(request):
-#     sms = Event.objects.all()
-#     context = {'events': events}
-#     return render(request, 'dashboard/show_events.html', context)
-    
+    sms = SMS.objects.all()    
+    context = {'sms': sms}
+    return render(request, 'dashboard/show_sms.html',context)
+
+
+
+def send_sms(request):
+    if request.method == 'POST':
+        staff = Staff.objects.all()
+        
+        sender_id = request.POST.get('sender_id')
+        title = request.POST.get('title')
+        body = request.POST.get('body')
+        message_count = len(staff)
+        message = ", ".join([title, body]) 
+        print(message)
+
+        # print(len(parents))
+        for worker in staff:
+            to_number =str(worker.contact)
+            # print(parent.phone)
+            
+            API_KEY = "OjRHbjdNV0doSXRUOFRTb0s="
+            if to_number and len(to_number)==10 and to_number.startswith("0"):
+
+                url = f"https://sms.arkesel.com/sms/api?action=send-sms&api_key={API_KEY}&to={to_number}&from={sender_id}&sms={message}"
+                print(url)
+                res = requests.get(url)
+                print(worker.contact)
+                print(res.status_code)
+                print(res.content)
+        
+               
+            else:
+                print("invalid phone number")
+        SMS.objects.create(
+                sender_id=sender_id,
+                title=title,
+                body=body,
+                messages_sent=message_count
+               )
+        return redirect('sms')
+    context = {}
+    return render(request, 'dashboard/send_sms.html',context)
+
+
+    # HOW TO FILL SHOW TABLE WITH INFO FROM SEND_SMS
+
 
 
 
